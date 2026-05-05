@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: 'Commercials | Cinedise Studio',
     description:
       'Commercial video production by Cinedise Studio - High-impact commercials that elevate your brand.',
-    images: [{ url: `${CDN_BASE}/commercials/header.jpg` }],
+    images: [{ url: `${CDN_BASE}/commercials/header.png` }],
   },
 };
 

@@ -18,7 +18,7 @@ export default function FilmsContent() {
           <div className="ph-image">
             <div className="ph-image-inner">
               <video autoPlay muted loop playsInline className="ph-video">
-                <source src={`${CDN_BASE}/films/background-video_1.mp4`} type="video/mp4" />
+                <source src={`${CDN_BASE}/films/background-video.mp4`} type="video/mp4" />
               </video>
             </div>
           </div>
@@ -159,7 +159,7 @@ export default function FilmsContent() {
             <div className="tt-gallery ttga-hover">
               <div className="tt-grid ttgr-layout-3 ttgr-not-cropped ttgr-shifted ttgr-gap-4">
                 <div className="tt-grid-items-wrap isotope-items-wrap lightgallery">
-                  {['poster-1.jpg', 'poster-2.jpg', 'poster-3.jpg'].map((img, i) => (
+                  {['poster-1.jpg', 'poster-2.png', 'poster-3.png'].map((img, i) => (
                     <div key={i} className="tt-grid-item isotope-item">
                       <div className="ttgr-item-inner">
                         <a
@@ -187,7 +187,7 @@ export default function FilmsContent() {
         <NextCategoryNav
           href="/commercials"
           categoryName="Commercials"
-          thumbnailUrl={`${CDN_BASE}/category-thumbnails/category-2.jpg`}
+          thumbnailUrl={`${CDN_BASE}/category-thumbnails/category-2.png`}
         />
       </div>
     </>

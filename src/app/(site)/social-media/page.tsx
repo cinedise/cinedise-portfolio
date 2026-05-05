@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Social Media | Cinedise Studio',
     description: 'Social media content creation by Cinedise Studio.',
-    images: [{ url: `${CDN_BASE}/social-media/header.jpg` }],
+    images: [{ url: `${CDN_BASE}/social-media/header.png` }],
   },
 };
 

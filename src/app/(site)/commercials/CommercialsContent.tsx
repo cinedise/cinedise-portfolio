@@ -22,7 +22,7 @@ export default function CommercialsContent({ projects }: Props) {
         <div className="page-header-inner tt-wrap">
           <div className="ph-image">
             <div className="ph-image-inner">
-              <img src={`${CDN_BASE}/commercials/header.jpg`} alt="Image" />
+              <img src={`${CDN_BASE}/commercials/header.png`} alt="Image" />
             </div>
           </div>
 
@@ -108,7 +108,7 @@ export default function CommercialsContent({ projects }: Props) {
         <NextCategoryNav
           href="/social-media"
           categoryName="Social Media"
-          thumbnailUrl={`${CDN_BASE}/category-thumbnails/category-3.jpg`}
+          thumbnailUrl={`${CDN_BASE}/category-thumbnails/category-3.png`}
         />
       </div>
     </>

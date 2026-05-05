@@ -30,14 +30,14 @@ export const CATEGORY_GRID_ITEMS: CategoryGridItem[] = [
     category: 'portfolio',
     projectCategory: 'Commercial',
     link: '/commercials',
-    image: `${CDN_BASE}/category-thumbnails/category-2.jpg`,
+    image: `${CDN_BASE}/category-thumbnails/category-2.png`,
   },
   {
     title: 'Social Media Content',
     category: 'elements',
     projectCategory: 'Social Media',
     link: '/social-media',
-    image: `${CDN_BASE}/category-thumbnails/category-3.jpg`,
+    image: `${CDN_BASE}/category-thumbnails/category-3.png`,
   },
   {
     title: 'Events',
