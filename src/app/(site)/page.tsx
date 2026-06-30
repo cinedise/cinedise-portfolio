@@ -140,7 +140,7 @@ export default function Home() {
         </div>
 
         {/* Brands Section */}
-        <Brands />
+        {/* <Brands /> */}
 
         {/* Contact CTA */}
         <ContactCTA />
