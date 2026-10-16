@@ -131,8 +131,8 @@ export default function Home() {
         >
           <div className="tt-section-inner tt-wrap max-width-1700">
             <div className="tt-heading tt-heading-lg tt-heading-center margin-bottom-7-p anim-fadeinup">
-              <h3 className="tt-heading-subtitle text-gray">Our Team</h3>
-              <h2 className="tt-heading-title">Meet the Crew</h2>
+              <h2 className="tt-heading-title">THE OG FIVE</h2>
+              <h3 className="tt-heading-subtitle text-gray">FIVE MINDS. ONE VISION.</h3>
             </div>
 
             <TeamGrid />

@@ -69,16 +69,16 @@ export const brands = [
 export const team = [
   {
     name: 'Kunal Mahto',
-    role: 'CEO & Co-Founder (Management)',
+    role: 'CEO & Co-Founder',
     description:
       "CEO, Co-Founder, Manager Extraordinaire, and the unsung hero who keeps the chaos from becoming a full-blown circus. When he's not saving the team from total management meltdowns, he's behind the camera or deep into editing mode (probably with three cups of coffee and a playlist that screams focus). Kunal's motto? \"Stay calm, stay creative — and make it look easy while you're at it.\"",
     imageUrl: `${CDN_BASE}/team/Kunal.jpg`,
   },
   {
     name: 'Suryadip Panda',
-    role: 'CEO & Co-Founder (Cinematographer)',
+    role: 'CEO & Co-Founder (DOP)',
     description:
-      "CEO, Co-Founder, Cinematographer, Colorist and probably the guy who fixes the coffee machine too. When he's not busy building empires, he's behind the camera making magic happen (and occasionally tripping over tripods). Suryadip believes in working hard, dreaming bigger, and laughing through the chaos — because if you can't have fun while running the show, what's the point?",
+      "CEO, Co-Founder, DOP, Colorist and probably the guy who fixes the coffee machine too. When he's not busy building empires, he's behind the camera making magic happen (and occasionally tripping over tripods). Suryadip believes in working hard, dreaming bigger, and laughing through the chaos — because if you can't have fun while running the show, what's the point?",
     imageUrl: `${CDN_BASE}/team/Surya.jpg`,
   },
   {
