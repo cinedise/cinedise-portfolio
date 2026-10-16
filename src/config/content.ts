@@ -96,13 +96,6 @@ export const team = [
     imageUrl: `${CDN_BASE}/team/Roza.jpg`,
   },
   {
-    name: 'Devdeep Maiti',
-    role: 'Graphic Designer',
-    description:
-      'Graphic Designer, certified sweetheart of the team, and unofficial "most likely to be late because he\'s still fixing his hair." His designs are sharp, clean, and ready on time — unlike him, if you\'re waiting to leave for a shoot. But hey, when you look that good and design even better, a little extra mirror time is basically a professional requirement.',
-    imageUrl: `${CDN_BASE}/team/Devdeep.jpg`,
-  },
-  {
     name: 'Noah',
     role: 'Motion & Web Designer',
     description:
