@@ -3,7 +3,7 @@ import { config, fields, collection } from '@keystatic/core';
 export default config({
   storage: {
     kind: 'github',
-    repo: 'whonoahexe/cinedise-portfolio'
+    repo: 'cinedise/cinedise-portfolio'
   },
   collections: {
     projects: collection({

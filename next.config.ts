@@ -1,6 +1,8 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  // Hosts that may load the dev server (`preview portfolio` on the studio server).
+  allowedDevOrigins: ['preview.cinedise.com', 'cinedise.persian-elnath.ts.net'],
   images: {
     remotePatterns: [
       {
