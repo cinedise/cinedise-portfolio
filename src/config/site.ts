@@ -6,11 +6,11 @@
 export const siteConfig = {
   company: {
     name: 'Cinedise Studio',
-    url: 'https://cinedise.studio',
+    url: 'https://cinedise.com',
     tagline: 'Crafting Visual Stories',
   },
   contact: {
-    email: 'business@cinedise.studio',
+    email: 'hello@cinedise.com',
     phones: [
       {
         number: '+918108859741',

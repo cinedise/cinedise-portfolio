@@ -3,7 +3,7 @@ import { brands } from '@/config/content';
 
 export default function Brands() {
   return (
-    <div className="tt-section padding-top-xlg-150 padding-bottom-xlg-150 bg-white-accent-2 !bg-[#0f0f0f]">
+    <div className="tt-section padding-top-xlg-150 padding-bottom-xlg-150">
       <div className="tt-section-inner tt-wrap">
         <div className="tt-heading tt-heading-xxlg tt-heading-stroke tt-heading-center margin-bottom-10-p anim-fadeinup">
           <h3 className="tt-heading-subtitle text-gray">Proudly Served</h3>

@@ -6,9 +6,9 @@
 export const CDN_BASE = 'https://d1c2534b1et22s.cloudfront.net';
 
 export const brandingAssets = {
-  logoLight: `${CDN_BASE}/logo-cinedise-light.png`,
-  logoDark: `${CDN_BASE}/logo-cinedise-dark.png`,
-  preloaderLogo: `${CDN_BASE}/logo-cinedise-light.png`,
+  logoLight: '/assets/img/logo/cinedise-tm-light.png',
+  logoDark: '/assets/img/logo/cinedise-tm-dark.png',
+  preloaderLogo: '/assets/img/logo/cinedise-tm-light.png',
   cursorImage: `${CDN_BASE}/cursor.jpg`,
 } as const;
 

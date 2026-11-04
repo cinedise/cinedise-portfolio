@@ -3,7 +3,7 @@ import { brandingAssets } from '@/config/content';
 
 export default function ContactCTA() {
   return (
-    <div className="tt-section padding-bottom-xlg-150 !bg-[#0a0a0a]">
+    <div className="tt-section padding-bottom-xlg-150">
       <div className="tt-section-inner tt-wrap">
         <div className="tt-page-nav tt-pn-scroll">
           <Link href="/contact" className="tt-pn-link anim-fadeinup" rel="noopener">

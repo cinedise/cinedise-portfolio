@@ -1,16 +1,23 @@
-import type { ProjectCategory, IsotopeCategory } from '@/types/project';
+import type { IsotopeCategory } from '@/types/project';
 import { CDN_BASE } from '@/config/content';
 
 /**
+ * A destination within a category grid item
+ */
+export interface CategoryGridLink {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+/**
  * Category grid item for the homepage portfolio grid
+ * Items with two links/images combine two categories into one card
  */
 export interface CategoryGridItem {
-  title: string;
   category: IsotopeCategory;
-  link: string;
-  image: string;
-  external?: boolean;
-  projectCategory?: ProjectCategory;
+  links: CategoryGridLink[];
+  images: string[];
 }
 
 /**
@@ -19,68 +26,35 @@ export interface CategoryGridItem {
  */
 export const CATEGORY_GRID_ITEMS: CategoryGridItem[] = [
   {
-    title: 'Films',
     category: 'pages',
-    projectCategory: 'Films',
-    link: '/films',
-    image: `${CDN_BASE}/category-thumbnails/category-1.jpg`,
+    links: [
+      { label: 'Films', href: '/films' },
+      { label: 'Commercials', href: '/commercials' },
+    ],
+    images: [
+      `${CDN_BASE}/category-thumbnails/category-1.jpg`,
+      `${CDN_BASE}/category-thumbnails/category-2.png`,
+    ],
   },
   {
-    title: 'Commercial',
     category: 'portfolio',
-    projectCategory: 'Commercial',
-    link: '/commercials',
-    image: `${CDN_BASE}/category-thumbnails/category-2.png`,
+    links: [{ label: 'Visual Effects', href: '/vfx' }],
+    images: [`${CDN_BASE}/category-thumbnails/category-5.jpg`],
   },
   {
-    title: 'Social Media Content',
-    category: 'elements',
-    projectCategory: 'Social Media',
-    link: '/social-media',
-    image: `${CDN_BASE}/category-thumbnails/category-3.png`,
-  },
-  {
-    title: 'Events',
     category: 'portfolio',
-    projectCategory: 'Events',
-    link: '/events',
-    image: `${CDN_BASE}/category-thumbnails/category-4.jpg`,
+    links: [{ label: 'Color', href: '/color' }],
+    images: [`${CDN_BASE}/category-thumbnails/category-6.jpg`],
   },
   {
-    title: 'Visual Effects',
     category: 'portfolio',
-    projectCategory: 'VFX',
-    link: '/vfx',
-    image: `${CDN_BASE}/category-thumbnails/category-5.jpg`,
-  },
-  {
-    title: 'Color',
-    category: 'portfolio',
-    projectCategory: 'Color',
-    link: '/color',
-    image: `${CDN_BASE}/category-thumbnails/category-6.jpg`,
-  },
-  {
-    title: 'Motion Design',
-    category: 'portfolio',
-    projectCategory: 'Motion Design',
-    link: 'https://brkn.me/motion',
-    image: `${CDN_BASE}/category-thumbnails/category-7.jpg`,
-    external: true,
-  },
-  {
-    title: 'Graphic Design',
-    category: 'portfolio',
-    projectCategory: 'Graphic Design',
-    link: '/graphic-design',
-    image: `${CDN_BASE}/category-thumbnails/category-8.jpg`,
-  },
-  {
-    title: 'UI/UX',
-    category: 'portfolio',
-    projectCategory: 'UI/UX',
-    link: 'https://brkn.me/web',
-    image: `${CDN_BASE}/category-thumbnails/category-9.jpg`,
-    external: true,
+    links: [
+      { label: 'Motion Design', href: 'https://brkn.me/motion', external: true },
+      { label: 'UI/UX', href: 'https://brkn.me/web', external: true },
+    ],
+    images: [
+      `${CDN_BASE}/category-thumbnails/category-7.jpg`,
+      `${CDN_BASE}/category-thumbnails/category-9.jpg`,
+    ],
   },
 ];

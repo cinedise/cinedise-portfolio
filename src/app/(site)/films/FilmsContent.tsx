@@ -94,7 +94,7 @@ export default function FilmsContent() {
         <ShareOverlay />
       </div>
 
-      <div id="work" className="!bg-[#0a0a0a]">
+      <div id="work">
         <div className="tt-section padding-top-xlg-180 padding-left-sm-3-p padding-right-sm-3-p">
           <div className="tt-section-inner tt-wrap">
             <div className="tt-row">

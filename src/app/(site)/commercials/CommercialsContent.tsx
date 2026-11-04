@@ -106,9 +106,9 @@ export default function CommercialsContent({ projects }: Props) {
         </div>
 
         <NextCategoryNav
-          href="/social-media"
-          categoryName="Social Media"
-          thumbnailUrl={`${CDN_BASE}/category-thumbnails/category-3.png`}
+          href="/vfx"
+          categoryName="Visual Effects"
+          thumbnailUrl={`${CDN_BASE}/category-thumbnails/category-5.jpg`}
         />
       </div>
     </>

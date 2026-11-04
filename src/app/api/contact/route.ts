@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { siteConfig } from '@/config/site';
 
 export async function POST(request: Request) {
   try {
@@ -6,7 +7,7 @@ export async function POST(request: Request) {
     const { name, email, subject, option, message } = body;
 
     const templateParams = {
-      to_email: process.env.EMAILJS_TO_EMAIL,
+      to_email: siteConfig.contact.email,
       subject: subject,
       option: option,
       name: name,

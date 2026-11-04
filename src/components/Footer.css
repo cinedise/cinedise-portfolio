@@ -1,0 +1,49 @@
+/* No background of its own: the site gradient shows through, so there's no edge above the footer */
+#tt-footer.site-footer {
+  padding: 40px 0;
+}
+
+/* Social icons centered above the copyright */
+#tt-footer .site-footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+#tt-footer .site-footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#tt-footer .site-footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 22px;
+  transition: background-color 0.2s;
+}
+
+#tt-footer .site-footer-social a:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+#tt-footer .site-footer-social a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #tt-footer .site-footer-social a {
+    transition: none;
+  }
+}

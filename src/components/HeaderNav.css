@@ -1,0 +1,197 @@
+/* Glass navigation, vertically centered on the header logo */
+#tt-header .header-nav {
+  --header-nav-glass-bg: rgba(18, 18, 18, 0.32);
+  --header-nav-glass-border: rgba(255, 255, 255, 0.22);
+  --header-nav-glass-blur: blur(18px) saturate(160%);
+
+  position: absolute;
+  top: 42.1px;
+  left: 50%;
+  z-index: 8;
+  height: 46.2px;
+  transform: translateX(-50%);
+  pointer-events: auto;
+}
+
+/*
+ * The blur lives on a pseudo-element because a backdrop-filter on the nav itself
+ * would stop the dropdown inside it from blurring the page behind.
+ */
+#tt-header .header-nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border: 1px solid var(--header-nav-glass-border);
+  border-radius: 999px;
+  background: var(--header-nav-glass-bg);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: var(--header-nav-glass-blur);
+  backdrop-filter: var(--header-nav-glass-blur);
+}
+
+#tt-header .header-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 6.3px;
+  height: 100%;
+  margin: 0;
+  padding: 0 8.4px;
+  list-style: none;
+}
+
+#tt-header .header-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8.4px;
+  height: 33.6px;
+  padding: 0 21px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 15.75px;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#tt-header .header-nav-services.is-open > .header-nav-link {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Touchscreens keep :hover after a tap, which would leave the link looking selected */
+@media (hover: hover) {
+  #tt-header .header-nav-link:hover {
+    background: rgba(255, 255, 255, 0.16);
+  }
+}
+
+#tt-header .header-nav-link:focus-visible,
+#tt-header .header-nav-dropdown-list a:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 1px;
+}
+
+#tt-header .header-nav-caret {
+  font-size: 10.5px;
+  transition: transform 0.2s;
+}
+
+#tt-header .header-nav-services.is-open .header-nav-caret {
+  transform: rotate(180deg);
+}
+
+/* Services dropdown; the top padding keeps hover alive across the gap below the nav */
+#tt-header .header-nav-services {
+  position: relative;
+}
+
+#tt-header .header-nav-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  padding-top: 14px;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.2s,
+    transform 0.2s,
+    visibility 0.2s;
+}
+
+#tt-header .header-nav-services.is-open .header-nav-dropdown {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#tt-header .header-nav-dropdown-list {
+  min-width: 200px;
+  margin: 0;
+  padding: 8.4px;
+  border: 1px solid var(--header-nav-glass-border);
+  border-radius: 18px;
+  background: var(--header-nav-glass-bg);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  list-style: none;
+  -webkit-backdrop-filter: var(--header-nav-glass-blur);
+  backdrop-filter: var(--header-nav-glass-blur);
+}
+
+#tt-header .header-nav-dropdown-list a {
+  display: block;
+  padding: 10.5px 12.6px;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 15.75px;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+
+#tt-header .header-nav-dropdown-list a:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+/* Stay readable where the browser can't blur */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  #tt-header .header-nav {
+    --header-nav-glass-bg: rgba(18, 18, 18, 0.88);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #tt-header .header-nav-link,
+  #tt-header .header-nav-caret,
+  #tt-header .header-nav-dropdown,
+  #tt-header .header-nav-dropdown-list a {
+    transition: none;
+  }
+}
+
+/* The logo moves up and shrinks at this width */
+@media (max-width: 1024px) {
+  #tt-header .header-nav {
+    top: 18.95px;
+  }
+
+  #tt-header .header-nav-link {
+    padding: 0 16.8px;
+    font-size: 14.7px;
+  }
+}
+
+/* No room beside the logo, so the nav takes its own full-width row with even margins */
+@media (max-width: 820px) {
+  #tt-header .header-nav {
+    top: 74px;
+    right: 3.5%;
+    left: 3.5%;
+    height: 42px;
+    transform: none;
+  }
+
+  #tt-header .header-nav-list {
+    justify-content: space-between;
+    gap: 2.1px;
+    padding: 0 4.2px;
+  }
+
+  #tt-header .header-nav-link {
+    gap: 6.3px;
+    height: 31.5px;
+    padding: 0 12.6px;
+    font-size: 13.65px;
+  }
+}
+
+/* Keep the nav inside the smallest phones with an even margin on both sides */
+@media (max-width: 350px) {
+  #tt-header .header-nav-link {
+    padding: 0 9.45px;
+  }
+}

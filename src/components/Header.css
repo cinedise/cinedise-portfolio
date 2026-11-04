@@ -1,0 +1,10 @@
+/* The theme's logo heights (48px, and 42px on small screens) plus 5% */
+#tt-header .tt-logo img {
+  max-height: 50.4px;
+}
+
+@media (max-width: 1024px) {
+  #tt-header .tt-logo img {
+    max-height: 44.1px;
+  }
+}

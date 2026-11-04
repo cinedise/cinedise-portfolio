@@ -5,6 +5,7 @@
 :root {
   --background: #000000;
   --foreground: #ffffff;
+  --radius-media: clamp(10px, 1.2vw, 18px);
 }
 
 body {
@@ -17,36 +18,58 @@ html {
   scroll-behavior: smooth;
 }
 
+/*
+ * Site-wide dark gradient. It stays fixed behind the page, so sections need no background of
+ * their own and every screen shows the same gradient however long the page is.
+ */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(160deg, #2b2420 0%, #1d1916 35%, #120f0d 70%, #0a0908 100%);
+  pointer-events: none;
+}
+
+/*
+ * The theme fades header images into solid #0d0d0d, which leaves a hard line against the
+ * gradient. Fade the image itself to transparent instead.
+ */
+body #page-header.ph-bg-image.ph-image-shadow::after {
+  display: none;
+}
+
+body #page-header.ph-bg-image.ph-image-shadow .ph-image {
+  -webkit-mask-image: linear-gradient(to bottom, #000 65%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 65%, transparent 100%);
+}
+
 .page-content .bg-white-accent-3 {
   background: rgba(0, 0, 0, 0) !important;
 }
 
-/* Replicate #page-header styles for unique ID to avoid React duplicate ID issues */
-#page-header-2.ph-full {
-  display: flex;
-  align-items: center;
-  min-height: 100vh;
+/*
+ * Rounded corners for images and panels. Most theme images are larger than their frames for zoom
+ * and parallax effects, so the frame that clips them is rounded rather than the image. Full-screen
+ * pieces such as the hero video and the /color slider stay square at the screen edges.
+ */
+body .pgi-image-wrap,
+body .team-image-wrap,
+body .tt-gallery-item,
+body .anim-image-parallax-wrap,
+body .tt-pci-image-wrap {
+  border-radius: var(--radius-media);
+  overflow: hidden;
+  isolation: isolate;
 }
 
-#page-header-2.ph-full .page-header-inner {
-  padding-top: 5% !important;
-  padding-bottom: 5% !important;
+body .team-bio {
+  border-radius: var(--radius-media);
 }
 
-#page-header-2.ph-full .ph-image {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  top: 0;
-  bottom: 0;
-  height: 100%;
-  width: 100%;
-}
-
-#page-header-2.ph-full .ph-image-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
+/* This image spans the full screen width, so its corners sit on the screen edge */
+body .tt-image .anim-image-parallax-wrap {
+  border-radius: 0;
 }
 
 /* ------------------------------------------------------------- *

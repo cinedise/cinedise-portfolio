@@ -370,7 +370,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
         {/* Description Section */}
         <div className="tt-section padding-left-sm-3-p padding-right-sm-3-p">
           <div className="tt-section-inner tt-wrap max-width-1000">
-            <div className="anim-fadeinup font-alter text-xxlg text-center">
+            <div className="anim-fadeinup text-xxlg text-center">
               <p>{project.description}</p>
             </div>
           </div>

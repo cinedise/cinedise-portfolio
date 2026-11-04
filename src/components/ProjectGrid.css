@@ -1,0 +1,49 @@
+/* Line the grid up with the header logo and menu */
+@media (min-width: 1025px) {
+  #portfolio-grid {
+    padding: 0 35px;
+  }
+}
+
+/* Reserve the thumbnail height so cards keep their size while images load */
+#portfolio-grid .pgi-image {
+  aspect-ratio: 3840 / 2022;
+}
+
+/* Line titles up with the image edge */
+#portfolio-grid .pgi-caption {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Cards that combine two categories crossfade between their images */
+#portfolio-grid .pgi-image img.pgi-image-crossfade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: pgi-image-crossfade 12s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #portfolio-grid .pgi-image img.pgi-image-crossfade {
+    animation: none;
+  }
+}
+
+@keyframes pgi-image-crossfade {
+  0%,
+  42% {
+    opacity: 0;
+  }
+  50%,
+  92% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
