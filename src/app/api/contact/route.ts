@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import { siteConfig } from '@/config/site';
+
+const FORM_RECIPIENT = 'cinedisestudio@gmail.com';
 
 export async function POST(request: Request) {
   try {
@@ -7,7 +8,7 @@ export async function POST(request: Request) {
     const { name, email, subject, option, message } = body;
 
     const templateParams = {
-      to_email: siteConfig.contact.email,
+      to_email: FORM_RECIPIENT,
       subject: subject,
       option: option,
       name: name,
