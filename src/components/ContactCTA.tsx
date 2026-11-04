@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { brandingAssets } from '@/config/content';
 
 export default function ContactCTA() {
   return (
@@ -13,10 +12,6 @@ export default function ContactCTA() {
 
           <div className="tt-pn-subtitle anim-fadeinup">
             Let&apos;s make something great together!
-          </div>
-
-          <div className="tt-pn-image">
-            <img src={brandingAssets.cursorImage} alt="image" />
           </div>
         </div>
       </div>

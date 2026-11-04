@@ -25,11 +25,13 @@ export const siteConfig = {
   social: {
     instagram: {
       url: 'https://www.instagram.com/cinedisestudio',
-      label: 'Ig.',
+      label: 'Instagram',
+      icon: 'fa-instagram',
     },
     youtube: {
       url: 'https://youtube.com/@cinedise?si=gV6O790ZKDjIDTj5',
-      label: 'Yt.',
+      label: 'YouTube',
+      icon: 'fa-youtube',
     },
   },
 } as const;

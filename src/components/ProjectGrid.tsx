@@ -28,7 +28,7 @@ export default function ProjectGrid() {
                       <div className="pgi-image-holder">
                         <div className="pgi-image-inner anim-zoomin">
                           <figure className="pgi-image ttgr-height">
-                            <img className="tt-lazy" src={primaryImage} alt={title} />
+                            <img src={primaryImage} alt={title} />
                             {crossfadeImage && (
                               <img className="pgi-image-crossfade" src={crossfadeImage} alt="" />
                             )}

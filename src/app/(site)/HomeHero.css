@@ -1,0 +1,41 @@
+/*
+ * web.mp4 (16:9) has the CINEDISE wordmark baked in, spanning 67%-96% of its width and sitting low
+ * in the frame. These positions stop `object-fit: cover` from slicing through it.
+ */
+
+/* Square or wider: anchor to the corner holding the wordmark, so all of it stays in frame */
+#page-header.home-hero .ph-video {
+  object-position: 100% 100%;
+}
+
+.home-hero-wordmark {
+  display: none;
+}
+
+/*
+ * Narrower than square: the wordmark can't fit, so frame the video to its left, which keeps the
+ * subject in the center of the shot, and draw the logo over it instead
+ */
+@media (max-aspect-ratio: 1/1) {
+  #page-header.home-hero .ph-video {
+    object-position: 20% 50%;
+  }
+
+  .home-hero-wordmark {
+    display: block;
+    position: absolute;
+    right: 5vw;
+    bottom: 12%;
+    width: min(70vw, 480px);
+    aspect-ratio: 980 / 271;
+    background: url('/assets/img/logo/cinedise-tm-light.png') right bottom / contain no-repeat;
+    opacity: 0.8;
+    pointer-events: none;
+  }
+}
+
+@media (max-aspect-ratio: 3/4) {
+  #page-header.home-hero .ph-video {
+    object-position: 40% 50%;
+  }
+}
