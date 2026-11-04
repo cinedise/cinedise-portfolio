@@ -124,7 +124,7 @@ export default function FilmsContent() {
             <div className="tt-image tti-fixed-height">
               <figure>
                 <img
-                  className="anim-image-parallax tt-lazy"
+                  className="anim-image-parallax"
                   src={`${CDN_BASE}/films/parallax.png`}
                   alt="Parallax Image"
                 />

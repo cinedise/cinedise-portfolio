@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import ContactForm from '@/components/ContactForm';
-import { brandingAssets } from '@/config/content';
 import { siteConfig } from '@/config/site';
 
 export const metadata: Metadata = {
@@ -53,26 +52,23 @@ export default function Contact() {
                   <h6 className="no-margin-bottom margin-top-40">Follow:</h6>
                   <div className="social-buttons">
                     <ul>
-                      <li>
-                        <a
-                          href={siteConfig.social.instagram.url}
-                          className="magnetic-item"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {siteConfig.social.instagram.label}
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href={siteConfig.social.youtube.url}
-                          className="magnetic-item"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {siteConfig.social.youtube.label}
-                        </a>
-                      </li>
+                      {Object.values(siteConfig.social).map(({ label, url, icon }) => (
+                        <li key={label}>
+                          <a
+                            href={url}
+                            className="magnetic-item"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={label}
+                          >
+                            <i
+                              className={`fab ${icon}`}
+                              style={{ fontSize: 22 }}
+                              aria-hidden="true"
+                            ></i>
+                          </a>
+                        </li>
+                      ))}
                     </ul>
                   </div>
                 </li>
@@ -95,9 +91,6 @@ export default function Contact() {
               <div className="tt-pn-hover-title">Portfolio</div>
             </a>
             <div className="tt-pn-subtitle anim-fadeinup">Selected Works</div>
-            <div className="tt-pn-image">
-              <img src={brandingAssets.cursorImage} alt="image" />
-            </div>
           </div>
         </div>
       </div>

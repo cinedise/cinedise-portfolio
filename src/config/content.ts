@@ -9,7 +9,6 @@ export const brandingAssets = {
   logoLight: '/assets/img/logo/cinedise-tm-light.png',
   logoDark: '/assets/img/logo/cinedise-tm-dark.png',
   preloaderLogo: '/assets/img/logo/cinedise-tm-light.png',
-  cursorImage: `${CDN_BASE}/cursor.jpg`,
 } as const;
 
 export const brands = [
