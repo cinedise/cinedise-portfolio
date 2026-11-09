@@ -33,7 +33,7 @@ export const CATEGORY_GRID_ITEMS: CategoryGridItem[] = [
     ],
     images: [
       `${CDN_BASE}/category-thumbnails/category-1.jpg`,
-      `${CDN_BASE}/category-thumbnails/category-2.png`,
+      `${CDN_BASE}/category-thumbnails/category-2.jpg`,
     ],
   },
   {

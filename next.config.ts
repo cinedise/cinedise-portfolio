@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cinedise-video.s3.eu-north-1.amazonaws.com',
-        pathname: '/public/**',
+        hostname: 'd2sujfb6uz40q4.cloudfront.net',
+        pathname: '/**',
       },
     ],
   },

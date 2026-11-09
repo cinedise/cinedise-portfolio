@@ -1,0 +1,94 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >-
+  Cinedise media CDN - CloudFront distribution in front of the private
+  cdn.cinedise.studio S3 bucket (OAC), with the WAF web ACL required by the
+  CloudFront flat-rate Free plan. Deploy in us-east-1 (CLOUDFRONT-scope WAF
+  must live there). The bucket policy lives in cdn-bucket-policy.yaml.
+
+Parameters:
+  BucketName:
+    Type: String
+    Default: cdn.cinedise.studio
+  BucketRegion:
+    Type: String
+    Default: eu-north-1
+  OriginPath:
+    Type: String
+    Default: /public
+    Description: Bucket prefix served at the distribution root (/team/x.jpg -> s3://bucket/public/team/x.jpg).
+
+Resources:
+  WebAcl:
+    Type: AWS::WAFv2::WebACL
+    Properties:
+      Name: cinedise-cdn-waf
+      Description: WAF for the Cinedise media CDN - required by the CloudFront flat-rate plan
+      Scope: CLOUDFRONT
+      DefaultAction:
+        Allow: {}
+      VisibilityConfig:
+        SampledRequestsEnabled: true
+        CloudWatchMetricsEnabled: true
+        MetricName: cinedise-cdn-waf
+      Rules:
+        - Name: rate-limit-per-ip
+          Priority: 0
+          Action:
+            Block: {}
+          Statement:
+            RateBasedStatement:
+              Limit: 2000
+              AggregateKeyType: IP
+              EvaluationWindowSec: 300
+          VisibilityConfig:
+            SampledRequestsEnabled: true
+            CloudWatchMetricsEnabled: true
+            MetricName: rate-limit-per-ip
+
+  OriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: cinedise-cdn-oac
+        Description: Lets only the Cinedise CDN distribution read the media bucket
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  Distribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Comment: Cinedise media CDN (cdn.cinedise.studio bucket)
+        Enabled: true
+        HttpVersion: http2and3
+        IPV6Enabled: true
+        PriceClass: PriceClass_All
+        WebACLId: !GetAtt WebAcl.Arn
+        Origins:
+          - Id: media-bucket
+            DomainName: !Sub '${BucketName}.s3.${BucketRegion}.amazonaws.com'
+            OriginPath: !Ref OriginPath
+            OriginAccessControlId: !GetAtt OriginAccessControl.Id
+            S3OriginConfig:
+              OriginAccessIdentity: ''
+        DefaultCacheBehavior:
+          TargetOriginId: media-bucket
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD, OPTIONS]
+          CachedMethods: [GET, HEAD]
+          Compress: true
+          # AWS managed "CachingOptimized" cache policy
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          # AWS managed "CORS-S3Origin" origin request policy
+          OriginRequestPolicyId: 88a5eaf4-2fd4-4709-b370-b4c650ea3fcf
+
+Outputs:
+  DistributionId:
+    Value: !Ref Distribution
+  DistributionArn:
+    Value: !Sub 'arn:aws:cloudfront::${AWS::AccountId}:distribution/${Distribution}'
+  DistributionDomainName:
+    Value: !GetAtt Distribution.DomainName
+  WebAclArn:
+    Value: !GetAtt WebAcl.Arn

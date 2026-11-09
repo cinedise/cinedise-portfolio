@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >-
+  Bucket policy letting only the Cinedise CDN CloudFront distribution (via OAC)
+  read the cdn.cinedise.studio bucket. Deploy in the bucket's Region (eu-north-1)
+  after cdn-distribution.yaml.
+
+Parameters:
+  BucketName:
+    Type: String
+    Default: cdn.cinedise.studio
+  DistributionArn:
+    Type: String
+    Description: DistributionArn output of the cdn-distribution stack.
+
+Resources:
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref BucketName
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: AllowCloudFrontOACRead
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: s3:GetObject
+            Resource: !Sub 'arn:aws:s3:::${BucketName}/*'
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Ref DistributionArn
+          - Sid: AllowCloudFrontOACList
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: s3:ListBucket
+            Resource: !Sub 'arn:aws:s3:::${BucketName}'
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Ref DistributionArn
+          - Sid: DenyInsecureTransport
+            Effect: Deny
+            Principal: '*'
+            Action: 's3:*'
+            Resource:
+              - !Sub 'arn:aws:s3:::${BucketName}'
+              - !Sub 'arn:aws:s3:::${BucketName}/*'
+            Condition:
+              Bool:
+                aws:SecureTransport: 'false'

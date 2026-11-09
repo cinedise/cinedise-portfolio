@@ -3,7 +3,7 @@
 // section heroes, page-level content, and other galleries.
 
 // Single source of truth for the CDN base URL
-export const CDN_BASE = 'https://d1c2534b1et22s.cloudfront.net';
+export const CDN_BASE = 'https://d2sujfb6uz40q4.cloudfront.net';
 
 export const brandingAssets = {
   logoLight: '/assets/img/logo/cinedise-tm-light.png',
