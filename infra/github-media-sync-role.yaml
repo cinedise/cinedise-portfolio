@@ -1,0 +1,56 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >-
+  Lets the "Sync media to CDN" GitHub Action (cinedise/cinedise-portfolio, main
+  branch only) upload Keystatic media into the cdn.cinedise.studio bucket under
+  public/projects/. Uses GitHub OIDC - no long-lived AWS keys.
+
+Parameters:
+  GitHubRepo:
+    Type: String
+    Default: cinedise/cinedise-portfolio
+  BucketName:
+    Type: String
+    Default: cdn.cinedise.studio
+  UploadPrefix:
+    Type: String
+    Default: public/projects
+
+Resources:
+  GitHubOidcProvider:
+    Type: AWS::IAM::OIDCProvider
+    Properties:
+      Url: https://token.actions.githubusercontent.com
+      ClientIdList:
+        - sts.amazonaws.com
+
+  MediaSyncRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: cinedise-github-media-sync
+      Description: GitHub Actions upload-only access to the Cinedise media bucket
+      MaxSessionDuration: 3600
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Federated: !Ref GitHubOidcProvider
+            Action: sts:AssumeRoleWithWebIdentity
+            Condition:
+              StringEquals:
+                token.actions.githubusercontent.com:aud: sts.amazonaws.com
+                token.actions.githubusercontent.com:sub: !Sub 'repo:${GitHubRepo}:ref:refs/heads/main'
+      Policies:
+        - PolicyName: upload-project-media
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:PutObject
+                  - s3:AbortMultipartUpload
+                Resource: !Sub 'arn:aws:s3:::${BucketName}/${UploadPrefix}/*'
+
+Outputs:
+  RoleArn:
+    Value: !GetAtt MediaSyncRole.Arn

@@ -1,0 +1,82 @@
+# Moves media that Keystatic commits into public/assets/projects/{header,gallery}
+# to the CDN bucket (s3://cdn.cinedise.studio/public/projects/...), checks the CDN
+# serves it, then removes it from the repo. The site loads these files from the
+# CDN (see uploadUrl in src/data/projects.ts). AWS access: infra/github-media-sync-role.yaml
+name: Sync media to CDN
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'public/assets/projects/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: sync-media
+  cancel-in-progress: false
+
+env:
+  AWS_REGION: eu-north-1
+  AWS_ROLE_ARN: arn:aws:iam::707398311505:role/cinedise-github-media-sync
+  BUCKET: cdn.cinedise.studio
+  CDN_BASE: https://d2sujfb6uz40q4.cloudfront.net
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Find media to move
+        id: find
+        run: |
+          find public/assets/projects/header public/assets/projects/gallery -type f ! -name '.gitkeep' 2>/dev/null | sort > media.txt || true
+          echo "count=$(wc -l < media.txt)" >> "$GITHUB_OUTPUT"
+          cat media.txt
+
+      - name: Configure AWS credentials
+        if: steps.find.outputs.count != '0'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Upload to S3
+        if: steps.find.outputs.count != '0'
+        run: |
+          while IFS= read -r f; do
+            rel="${f#public/assets/}"            # projects/header/x.jpg
+            aws s3 cp "$f" "s3://$BUCKET/public/$rel" --cache-control 'public, max-age=86400' --only-show-errors
+            echo "uploaded $rel"
+          done < media.txt
+
+      - name: Check the CDN serves every file
+        if: steps.find.outputs.count != '0'
+        run: |
+          fail=0
+          while IFS= read -r f; do
+            rel="${f#public/assets/}"
+            url="$CDN_BASE/$(python3 -c 'import sys,urllib.parse;print(urllib.parse.quote(sys.argv[1]))' "$rel")"
+            for i in 1 2 3 4 5 6; do
+              code=$(curl -s -o /dev/null -r 0-0 -w '%{http_code}' "$url?sync=$GITHUB_RUN_ID")
+              case "$code" in 200|206) break;; esac
+              sleep 10
+            done
+            echo "$code $url"
+            case "$code" in 200|206) ;; *) fail=1;; esac
+          done < media.txt
+          exit $fail
+
+      - name: Remove moved files from the repo
+        if: steps.find.outputs.count != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          while IFS= read -r f; do git rm -q "$f"; done < media.txt
+          git commit -m "chore: move uploaded project media to CDN" -m "Moved by the Sync media to CDN workflow (run $GITHUB_RUN_ID)."
+          git pull --rebase origin main
+          git push origin HEAD:main

@@ -1,8 +1,15 @@
 import { createReader } from '@keystatic/core/reader';
 import keystaticConfig from '../../keystatic.config';
 import type { Project } from '@/types/project';
+import { CDN_BASE } from '@/config/content';
 
 const reader = createReader(process.cwd(), keystaticConfig);
+
+// Keystatic uploads are committed to public/assets/projects/{header,gallery}, then the
+// "Sync media to CDN" GitHub Action moves them to S3. Serve them from the CDN.
+function uploadUrl(file: string, type: 'header' | 'gallery'): string {
+  return `${CDN_BASE}/projects/${type}/${file}`;
+}
 
 // Helper to resolve image paths (handles string legacy, string values, and object discriminants)
 function resolveImage(
@@ -13,17 +20,13 @@ function resolveImage(
   if (typeof img === 'string') {
     if (img.startsWith('http')) return img;
     // Legacy migration: assume upload
-    return type === 'header' 
-      ? `/assets/projects/header/${img}` 
-      : `/assets/projects/gallery/${img}`;
+    return uploadUrl(img, type);
   }
   const val = img as any;
   if (val.discriminant === 'url') return val.value || '';
   if (val.discriminant === 'upload') {
      if (!val.value) return '';
-     return type === 'header' 
-      ? `/assets/projects/header/${val.value}` 
-      : `/assets/projects/gallery/${val.value}`;
+     return uploadUrl(val.value, type);
   }
   return '';
 }
