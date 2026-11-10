@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   description: 'Cinedise Studio Portfolio',
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/icon.svg', sizes: 'any', type: 'image/svg+xml' },
       { url: '/favicon-48x48.png', sizes: '48x48', type: 'image/png' },
       { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
     ],
