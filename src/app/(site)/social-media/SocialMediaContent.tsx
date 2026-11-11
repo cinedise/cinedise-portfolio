@@ -22,7 +22,10 @@ export default function SocialMediaContent({ projects }: Props) {
         <div className="page-header-inner tt-wrap">
           <div className="ph-image">
             <div className="ph-image-inner">
-              <img src={`${CDN_BASE}/social-media/header.jpg`} alt="Image" />
+              <img
+                src={`${CDN_BASE}/social-media/header.jpg`}
+                alt="Social media video content by Cinedise Studio"
+              />
             </div>
           </div>
 

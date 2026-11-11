@@ -123,7 +123,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
         <div className="page-header-inner tt-wrap">
           <div className="ph-image">
             <div className="ph-image-inner">
-              <img src={project.headerImage} alt="Image" />
+              <img src={project.headerImage} alt={`${project.title} by Cinedise Studio`} />
             </div>
           </div>
 
@@ -132,7 +132,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
               <div className="ph-category">{project.category}</div>
             </div>
 
-            <h2 className="ph-caption-title ph-appear">{project.title}</h2>
+            <h1 className="ph-caption-title ph-appear">{project.title}</h1>
           </div>
 
           <div className="project-info-list anim-fadeinup">
@@ -197,7 +197,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
               <div className="bg-noise"></div>
             </div>
             <div className="ph-share-inner">
-              <h1 className="ph-share-title ph-share-appear">Spread the Word!</h1>
+              <h2 className="ph-share-title ph-share-appear">Spread the Word!</h2>
               <div className="ph-share-subtitle ph-share-appear">
                 Share this project with your friends
               </div>
@@ -401,7 +401,10 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                                         <source src={image} type="video/mp4" />
                                       </video>
                                     ) : (
-                                      <img src={image} alt={`Gallery Image ${index + 1}`} />
+                                      <img
+                                        src={image}
+                                        alt={`${project.title}, still ${index + 1}`}
+                                      />
                                     )}
                                   </figure>
                                 </div>
@@ -429,7 +432,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                 </Link>
                 <div className="tt-pn-subtitle anim-fadeinup">Explore More</div>
                 <div className="tt-pn-image">
-                  <img src={project.nextProject.thumbnail} alt="image" />
+                  <img src={project.nextProject.thumbnail} alt={project.nextProject.title} />
                 </div>
               </div>
             </div>

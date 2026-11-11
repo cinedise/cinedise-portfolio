@@ -15,7 +15,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
             <img
               src={brandingAssets.preloaderLogo}
               className="ptr-prel-image tt-logo-light"
-              alt="Logo"
+              alt="Cinedise Studio"
             />
           </div>
         </div>

@@ -4,11 +4,21 @@ import TeamGrid from '@/components/TeamGrid';
 import ContactCTA from '@/components/ContactCTA';
 import { CDN_BASE } from '@/config/content';
 import './HomeHero.css';
+import type { Metadata } from 'next';
+import { pageMetadata, SITE_DESCRIPTION } from '@/config/seo';
+
+export const metadata: Metadata = pageMetadata({
+  title: 'Cinedise Studio | Film, VFX & Video Production in Mumbai',
+  description: SITE_DESCRIPTION,
+  path: '/',
+  image: `${CDN_BASE}/category-thumbnails/category-1.jpg`,
+});
 
 export default function Home() {
   return (
     <>
       {/* Page Header - Video */}
+      <h1 className="sr-only">Cinedise Studio: film, VFX and video production in Mumbai</h1>
       <div
         id="page-header"
         className="home-hero ph-full ph-bg-image ph-image-shadow ph-image-cover-5 ph-content-parallax"

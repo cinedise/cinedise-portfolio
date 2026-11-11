@@ -14,7 +14,10 @@ export default function GraphicDesignContent() {
         <div className="page-header-inner tt-wrap">
           <div className="ph-image">
             <div className="ph-image-inner">
-              <img src={`${CDN_BASE}/category-thumbnails/category-8.jpg`} alt="Image" />
+              <img
+                src={`${CDN_BASE}/category-thumbnails/category-8.jpg`}
+                alt="Graphic design by Cinedise Studio"
+              />
             </div>
           </div>
 

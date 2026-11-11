@@ -46,7 +46,7 @@ export default function ShareOverlay() {
         </div>
 
         <div className="ph-share-inner">
-          <h1 className="ph-share-title ph-share-appear">Spread the Word!</h1>
+          <h2 className="ph-share-title ph-share-appear">Spread the Word!</h2>
           <div className="ph-share-subtitle ph-share-appear">
             Share this project with your friends
           </div>

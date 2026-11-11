@@ -1,17 +1,14 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/config/seo';
 import ContactForm from '@/components/ContactForm';
 import { siteConfig } from '@/config/site';
 
-export const metadata: Metadata = {
-  title: 'Contact | Cinedise Studio',
+export const metadata: Metadata = pageMetadata({
+  title: 'Contact Cinedise Studio | Video Production Studio in Mumbai',
   description:
-    'Get in touch with Cinedise Studio for your video, film production, and marketing needs.',
-  openGraph: {
-    title: 'Contact | Cinedise Studio',
-    description:
-      'Get in touch with Cinedise Studio for your video, film production, and marketing needs.',
-  },
-};
+    'Get in touch with Cinedise Studio in Mumbai for commercials, films, VFX, color grading, event coverage and social media video production.',
+  path: '/contact',
+});
 
 export default function Contact() {
   return (
@@ -23,10 +20,10 @@ export default function Contact() {
             <div className="tt-col-lg-5 padding-right-lg-5-p">
               <div className="tt-heading tt-heading-lg margin-bottom-10-p anim-fadeinup">
                 <h3 className="tt-heading-subtitle text-gray">Get in Touch</h3>
-                <h2 className="tt-heading-title">
+                <h1 className="tt-heading-title">
                   Drop Us
                   <br /> A Line
-                </h2>
+                </h1>
               </div>
 
               <ul className="tt-contact-info padding-bottom-40 text-gray">

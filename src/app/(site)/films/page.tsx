@@ -1,17 +1,15 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/config/seo';
 import FilmsContent from './FilmsContent';
 import { CDN_BASE } from '@/config/content';
 
-export const metadata: Metadata = {
-  title: 'Films | Cinedise Studio',
+export const metadata: Metadata = pageMetadata({
+  title: 'Films | Cinedise Studio, Mumbai',
   description:
-    'Film production by Cinedise Studio - The Unequals, an action-packed short film with high-end VFX and Dolby Atmos sound.',
-  openGraph: {
-    title: 'Films | Cinedise Studio',
-    description: 'Film production by Cinedise Studio - The Unequals, an action-packed short film.',
-    images: [{ url: `${CDN_BASE}/films/parallax.png` }],
-  },
-};
+    'Short film production by Mumbai-based Cinedise Studio. Watch The Unequals, an action short film with high-end VFX and Dolby Atmos sound.',
+  path: '/films',
+  image: `${CDN_BASE}/films/parallax.png`,
+});
 
 export default function FilmsPage() {
   return <FilmsContent />;

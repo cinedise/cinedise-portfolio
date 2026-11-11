@@ -1,19 +1,16 @@
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/config/seo';
 import { getProjectsByCategory } from '@/data/projects';
 import CommercialsContent from './CommercialsContent';
 import { CDN_BASE } from '@/config/content';
 
-export const metadata: Metadata = {
-  title: 'Commercials | Cinedise Studio',
+export const metadata: Metadata = pageMetadata({
+  title: 'Commercial Video Production in Mumbai | Cinedise Studio',
   description:
-    'Commercial video production by Cinedise Studio - High-impact commercials that elevate your brand.',
-  openGraph: {
-    title: 'Commercials | Cinedise Studio',
-    description:
-      'Commercial video production by Cinedise Studio - High-impact commercials that elevate your brand.',
-    images: [{ url: `${CDN_BASE}/commercials/header.png` }],
-  },
-};
+    'Ad film and commercial video production in Mumbai by Cinedise Studio. High-impact commercials for brands across India, from concept to final cut.',
+  path: '/commercials',
+  image: `${CDN_BASE}/commercials/header.png`,
+});
 
 export default async function CommercialsPage() {
   const projects = await getProjectsByCategory('Commercial');

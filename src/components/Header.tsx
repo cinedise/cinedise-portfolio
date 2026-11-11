@@ -20,12 +20,12 @@ export default function Header() {
               <img
                 src={brandingAssets.logoLight}
                 className="tt-logo-light magnetic-item"
-                alt="Logo"
+                alt="Cinedise Studio"
               />
               <img
                 src={brandingAssets.logoDark}
                 className="tt-logo-dark magnetic-item"
-                alt="Logo"
+                alt="Cinedise Studio"
               />
             </Link>
           </div>

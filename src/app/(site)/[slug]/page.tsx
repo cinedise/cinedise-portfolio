@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getAllProjectSlugs, getProjectBySlug } from '@/data/projects';
 import ProjectDetail from '@/components/ProjectDetail';
+import { pageMetadata } from '@/config/seo';
 
 export async function generateStaticParams() {
   const slugs = await getAllProjectSlugs();
@@ -22,15 +23,12 @@ export async function generateMetadata({
       ? project.description.substring(0, 157) + '...'
       : project.description;
 
-  return {
+  return pageMetadata({
     title: `${project.title} | Cinedise Studio`,
     description,
-    openGraph: {
-      title: `${project.title} | Cinedise Studio`,
-      description,
-      images: [{ url: project.headerImage }],
-    },
-  };
+    path: `/${slug}`,
+    image: project.headerImage || undefined,
+  });
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {

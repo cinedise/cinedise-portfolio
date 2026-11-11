@@ -27,7 +27,7 @@ export default function FilmsContent() {
             <div className="ph-categories ph-appear">
               <div className="ph-category">Film</div>
             </div>
-            <h2 className="ph-caption-title ph-appear">The Unequals</h2>
+            <h1 className="ph-caption-title ph-appear">The Unequals</h1>
           </div>
 
           <div className="project-info-list anim-fadeinup margin-top-60">
@@ -106,7 +106,7 @@ export default function FilmsContent() {
                         <div className="ttgr-item-inner">
                           <img
                             src={`${CDN_BASE}/films/${img}`}
-                            alt={`Image ${i + 1}`}
+                            alt={`The Unequals, still ${i + 1}`}
                             className="anim-image-parallax"
                           />
                         </div>
@@ -126,7 +126,7 @@ export default function FilmsContent() {
                 <img
                   className="anim-image-parallax"
                   src={`${CDN_BASE}/films/parallax.png`}
-                  alt="Parallax Image"
+                  alt="The Unequals, a short film by Cinedise Studio"
                 />
               </figure>
             </div>
@@ -170,7 +170,10 @@ export default function FilmsContent() {
                           <div className="tt-gallery-item-inner">
                             <div className="tt-gallery-image-wrap anim-zoomin">
                               <figure className="tt-gallery-image ttgr-height">
-                                <img src={`${CDN_BASE}/films/${img}`} alt="Poster" />
+                                <img
+                                  src={`${CDN_BASE}/films/${img}`}
+                                  alt={`The Unequals poster ${i + 1}`}
+                                />
                               </figure>
                             </div>
                           </div>

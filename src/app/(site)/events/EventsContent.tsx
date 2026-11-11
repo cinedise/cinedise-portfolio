@@ -22,7 +22,10 @@ export default function EventsContent({ projects }: Props) {
         <div className="page-header-inner tt-wrap">
           <div className="ph-image">
             <div className="ph-image-inner">
-              <img src={`${CDN_BASE}/events/header.jpg`} alt="Image" />
+              <img
+                src={`${CDN_BASE}/events/header.jpg`}
+                alt="Event videography by Cinedise Studio"
+              />
             </div>
           </div>
 

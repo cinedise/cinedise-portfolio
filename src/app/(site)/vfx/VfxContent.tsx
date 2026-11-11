@@ -174,6 +174,7 @@ export default function VfxContent({ projects }: Props) {
 
   return (
     <div id="work">
+      <h1 className="sr-only">VFX studio in Mumbai: visual effects by Cinedise Studio</h1>
       <div
         ref={carouselRef}
         className="tt-portfolio-carousel pci-caption-center cursor-drag-mouse-down pc-scale-down"

@@ -3,12 +3,15 @@ import { Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { brandingAssets } from '@/config/content';
 import Script from 'next/script';
+import { siteConfig } from '@/config/site';
+import { SITE_DESCRIPTION } from '@/config/seo';
 
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Cinedise Studio',
-  description: 'Cinedise Studio Portfolio',
+  metadataBase: new URL(siteConfig.company.url),
+  title: 'Cinedise Studio | Film, VFX & Video Production in Mumbai',
+  description: SITE_DESCRIPTION,
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '32x32' },

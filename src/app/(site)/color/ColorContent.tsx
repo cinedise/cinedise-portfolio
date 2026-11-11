@@ -165,6 +165,7 @@ export default function ColorContent() {
 
   return (
     <div id="work">
+      <h1 className="sr-only">Color grading in Mumbai by Cinedise Studio</h1>
       <div
         ref={sliderRef}
         className="tt-portfolio-slider cursor-drag-mouse-down"

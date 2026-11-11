@@ -22,7 +22,10 @@ export default function CommercialsContent({ projects }: Props) {
         <div className="page-header-inner tt-wrap">
           <div className="ph-image">
             <div className="ph-image-inner">
-              <img src={`${CDN_BASE}/commercials/header.png`} alt="Image" />
+              <img
+                src={`${CDN_BASE}/commercials/header.png`}
+                alt="Commercial video production by Cinedise Studio"
+              />
             </div>
           </div>
 
